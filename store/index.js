@@ -4,6 +4,9 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
+const hostName = 'localhost:4000'
+const path = '/api/todos'
+
 const store = () => new Vuex.Store({
   state: {
     todos: []
@@ -55,6 +58,16 @@ const store = () => new Vuex.Store({
     },
     nuxtServerInit ({ commit }, { req }) {
       commit('SET_TODOS', req.session ? (req.session.todos || []) : [])
+    },
+    getTodos ({ commit }) {
+      axios
+        .get(`http://${hostName}${path}`)
+        .then(response => {
+          commit('SET_TODOS', response.data)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
 })

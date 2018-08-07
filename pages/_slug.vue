@@ -40,6 +40,9 @@ export default {
       editedTodo: null
     };
   },
+  mounted: function() {
+    this.$store.dispatch("getTodos");
+  },
   watch: {
     todos: {
       deep: true,
