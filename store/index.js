@@ -41,7 +41,14 @@ const store = () => new Vuex.Store({
   },
   actions: {
     addTodo ({ commit }, todo) {
-      commit('ADD_TODO', todo)
+      axios
+        .post(`http://${hostName}${path}`, { todo: { title: todo.title, completed: todo.completed } })
+        .then(response => {
+          commit('ADD_TODO', todo)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     },
     setTodos ({ commit }, todos) {
       commit('SET_TODOS', todos)
