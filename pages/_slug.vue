@@ -91,8 +91,8 @@ export default {
     }
   },
   components: {
-    TodoHeader,
-    TodoFooter
+    "todo-header": TodoHeader,
+    "todo-footer": TodoFooter
   }
 };
 </script>
