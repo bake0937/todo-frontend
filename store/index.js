@@ -54,7 +54,14 @@ const store = () => new Vuex.Store({
       commit('SET_TODOS', todos)
     },
     removeTodo ({ commit }, todo) {
-      commit('REMOVE_TODO', todo)
+      axios
+        .delete(`http://${hostName}${path}/${todo.id}`)
+        .then(response => {
+          commit('REMOVE_TODO', todo)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     },
     allDone ({ state, commit }) {
       var value = state.todos.filter(todo => todo.completed).length === state.todos.length
