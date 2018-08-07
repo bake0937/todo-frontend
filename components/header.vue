@@ -16,8 +16,10 @@ export default {
       if (value) {
         this.$store.dispatch("addTodo", {
           title: value,
+          // ここでTrueFalseをの値を入れている。とりあえずundifindのやつにしたくてthis.$route.params.slugにした?
           completed: this.$route.params.slug === "completed"
         });
+        // 入力欄をクリアにする
         this.todo = "";
       }
     }
