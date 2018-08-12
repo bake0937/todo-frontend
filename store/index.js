@@ -67,9 +67,6 @@ const store = () => new Vuex.Store({
       var value = state.todos.filter(todo => todo.completed).length === state.todos.length
       commit('FILTER_TODOS', value)
     },
-    saveTodos ({ state }) {
-      axios.put('/api/todos', { todos: state.todos })
-    },
     nuxtServerInit ({ commit }, { req }) {
       commit('SET_TODOS', req.session ? (req.session.todos || []) : [])
     },
@@ -78,6 +75,16 @@ const store = () => new Vuex.Store({
         .get(`http://${hostName}${path}`)
         .then(response => {
           commit('SET_TODOS', response.data)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
+    editTodo ({ commit }, todo) {
+      axios
+        .patch(`http://${hostName}${path}/${todo.id}`, { todo: { title: todo.title } })
+        .then(response => {
+          // commit('EDIT_TODO', todo)
         })
         .catch(function (error) {
           console.log(error)

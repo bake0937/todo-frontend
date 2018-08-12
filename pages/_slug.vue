@@ -43,12 +43,6 @@ export default {
   mounted: function() {
     this.$store.dispatch("getTodos");
   },
-  watch: {
-    todos: {
-      deep: true,
-      handler: "save"
-    }
-  },
   computed: {
     todos() {
       if (this.$route.params.slug === "active") {
@@ -69,6 +63,7 @@ export default {
       this.editedTodo = todo;
     },
     doneEdit(todo) {
+      this.$store.dispatch("editTodo", todo);
       this.editedTodo = null;
       todo.title = todo.title.trim();
       if (!todo.title) {
@@ -81,9 +76,6 @@ export default {
     },
     removeTodo(todo) {
       this.$store.dispatch("removeTodo", todo);
-    },
-    save() {
-      this.$store.dispatch("saveTodos");
     }
   },
   directives: {
