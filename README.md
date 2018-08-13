@@ -1,4 +1,4 @@
-# Nuxt.js TodoMVC Example
+# Nuxt.js TodoMVC ExampleをrailsAPIと連携できるように書き換えてみる
 
 > Nuxt.js is a framework for building Universal Vue.js Applications.
 
