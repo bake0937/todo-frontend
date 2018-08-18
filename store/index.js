@@ -26,6 +26,9 @@ const store = () => new Vuex.Store({
     SET_TODOS (state, todos) {
       state.todos = todos
     },
+    ADD_TODO (state, todo) {
+      state.todos.push(todo)
+    },
     REMOVE_TODO (state, todo) {
       var i = state.todos.indexOf(todo)
       state.todos.splice(i, 1)
@@ -41,7 +44,7 @@ const store = () => new Vuex.Store({
       axios
         .post(`http://${hostName}${path}`, { todo: { title: todo.title, completed: todo.completed } })
         .then(response => {
-          this.dispatch("getTodos");
+          commit('ADD_TODO', todo)
         })
         .catch(function (error) {
           console.log(error)
