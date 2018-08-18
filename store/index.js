@@ -44,7 +44,7 @@ const store = () => new Vuex.Store({
       axios
         .post(`http://${hostName}${path}`, { todo: { title: todo.title, completed: todo.completed } })
         .then(response => {
-          commit('ADD_TODO', todo)
+          commit('ADD_TODO', response.data)
         })
         .catch(function (error) {
           console.log(error)
