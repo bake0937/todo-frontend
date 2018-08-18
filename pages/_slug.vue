@@ -62,8 +62,8 @@ export default {
       this.beforeEditCache = todo.title;
       this.editedTodo = todo;
     },
-    doneEdit(todo) {
-      this.$store.dispatch("editTodo", todo);
+    doneEdit(todo, key) {
+      this.$store.dispatch("editTodo", { todo, key });
       this.editedTodo = null;
       todo.title = todo.title.trim();
       if (!todo.title) {
